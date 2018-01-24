@@ -6,6 +6,7 @@ defmodule TgBots.Spurdify do
   "your"    => "ur",
   "god"     => "dog",
   "linux"   => "linugs",
+  "fucking" => "fuggen",
   "you"     => "u",
   "wh"      => "w",
   "th"      => "d",
