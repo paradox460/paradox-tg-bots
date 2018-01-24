@@ -65,8 +65,8 @@ defmodule TgBots.Spurdify do
       regex = Regex.compile!(k, "i")
        acc = String.replace(acc, regex, v)
     end)).()
-    |> String.replace(".", stupid_face(":"))
-    |> String.replace(",", stupid_face("x"))
+    |> String.replace(~r(\.+), stupid_face(":"))
+    |> String.replace(~r(,+), stupid_face("x"))
   end
 
   defp stupid_face(leading, rand_max \\ 5) do
