@@ -62,6 +62,7 @@ defmodule TgBots.Spurdify do
 
   def spurdify(text) do
     text
+    |> String.downcase
     |> (&Enum.reduce(@spurdify, &1, fn ({k, v}, acc) ->
       regex = Regex.compile!(k, "i")
        acc = String.replace(acc, regex, v)
