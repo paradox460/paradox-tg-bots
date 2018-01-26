@@ -9,9 +9,13 @@ defmodule TgBotsWeb.SpurdifyView do
       "results" => [
         %{
           "type" => "article",
+          "id" => Base.encode16(:crypto.hash(:sha256, text)),
+          "title" => "Spurdified Text",
           "input_message_content" => %{
             "message_text" => text
-          }
+          },
+          "description" => text,
+          "thumb_url" => static_url(TgBotsWeb.Endpoint, "/images/spurdo.png")
         }
       ]
     }
