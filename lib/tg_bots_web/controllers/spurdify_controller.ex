@@ -3,7 +3,7 @@ defmodule TgBotsWeb.SpurdifyController do
   import TgBots.Spurdify, only: [spurdify: 1]
 
   # Inline Query
-  def create(conn, %{"inline_query" => %{"query" => q, "id" => id }} = params) do
+  def create(conn, %{"inline_query" => %{"query" => q, "id" => id }}) do
     render(conn, "inline-query.json", text: spurdify(q), id: id)
   end
   # Message
@@ -15,7 +15,7 @@ defmodule TgBotsWeb.SpurdifyController do
     end
   end
   # Bot command
-  def create(conn, %{"message" => %{"text" => text, "message_id" => message_id, "chat" => %{"id" => chat_id}}} = params) do
+  def create(conn, %{"message" => %{"text" => text, "message_id" => message_id, "chat" => %{"id" => chat_id}}}) do
     if text =~ ~r{\A/spurdify(?:@.*?)?\s+.+}i do
       text = String.replace(text, ~r{\A/spurdify(?:@.*?)?\s+}i,"")
       render(conn, "message-response.json", text: spurdify(text), chat_id: chat_id, message_id: message_id)
@@ -24,7 +24,7 @@ defmodule TgBotsWeb.SpurdifyController do
     end
   end
 
-  def create(conn, params) do
+  def create(conn, _params) do
     conn |> send_resp(204, "")
   end
 end
