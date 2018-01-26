@@ -4,7 +4,7 @@ defmodule TgBotsWeb.SpurdifyController do
 
   # Inline Query
   def create(conn, %{"inline_query" => %{"query" => q, "id" => id }} = params) do
-    render(conn, "inline-query.json", text: spurdify(q), id: id )
+    render(conn, "inline-query.json", text: spurdify(q), id: id)
   end
   # Message
   def create(conn, %{"message" => %{"text" => text, "chat" => %{"id" => chat_id, "type" => "private"}}}) do
