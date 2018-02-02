@@ -1,4 +1,5 @@
 defmodule TgBots.Spurdify do
+  import PipeTo
   @spurdify [
     {"kek",     "geg"},
     {"epic",    "ebin"},
@@ -68,8 +69,8 @@ defmodule TgBots.Spurdify do
     |> (&Enum.reduce(@spurdify, &1, fn ({regex, replacement}, acc) ->
        acc = String.replace(acc, regex, replacement)
     end)).()
-    |> String.replace(~r(\.+), stupid_face(":"))
-    |> String.replace(~r(,+), stupid_face("x"))
+    ~> Regex.replace(~r(\.+), _,  fn -> stupid_face(":") end, global: true)
+    ~> Regex.replace(~r(,+), _, fn -> stupid_face("x") end, global: true)
   end
 
   defp stupid_face(leading, rand_max \\ 5) do
