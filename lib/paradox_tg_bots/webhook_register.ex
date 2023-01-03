@@ -14,7 +14,7 @@ defmodule ParadoxTgBots.WebhookRegister do
     Finch.build(
       :post,
       "https://api.telegram.org/bot#{token}/setWebhook",
-      [],
+      [{"Content-Type", "application/json"}],
       Jason.encode!(%{
         url: spurdify_url(Endpoint, :create),
         allowed_updates: ~w[message inline_query],
@@ -23,6 +23,7 @@ defmodule ParadoxTgBots.WebhookRegister do
       })
     )
     |> Finch.request(Finch)
+    |> IO.inspect(label: "Webhook registration response")
 
     IO.puts("Webhook registration completed")
   end
