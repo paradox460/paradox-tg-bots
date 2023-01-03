@@ -1,6 +1,9 @@
 defmodule ParadoxTgBots.WebhookRegister do
   use Task
 
+  import ParadoxTgBotsWeb.Router.Helpers, only: [spurdify_url: 2]
+  alias ParadoxTgBotsWeb.Endpoint
+
   def start_link(_arg), do: Task.start_link(__MODULE__, :run, [])
 
   def run() do
@@ -13,7 +16,7 @@ defmodule ParadoxTgBots.WebhookRegister do
       "https://api.telegram.org/bot#{token}/setWebhook",
       [],
       Jason.encode!(%{
-        url: "localhost",
+        url: spurdify_url(Endpoint, :create),
         allowed_updates: ~w[message inline_query],
         drop_pending_updates: true,
         secret_token: secret
