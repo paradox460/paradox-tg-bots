@@ -13,7 +13,9 @@ defmodule ParadoxTgBots.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: ParadoxTgBots.PubSub},
       # Start the Endpoint (http/https)
-      ParadoxTgBotsWeb.Endpoint
+      ParadoxTgBotsWeb.Endpoint,
+      {Finch, name: Finch},
+      ParadoxTgBots.WebhookRegister
       # Start a worker by calling: ParadoxTgBots.Worker.start_link(arg)
       # {ParadoxTgBots.Worker, arg}
     ]

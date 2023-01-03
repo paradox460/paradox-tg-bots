@@ -33,6 +33,7 @@ defmodule ParadoxTgBots.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:finch, "~> 0.14 "},
       {:phoenix, "~> 1.6.15"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},

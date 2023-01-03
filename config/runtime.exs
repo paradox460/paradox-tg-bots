@@ -20,6 +20,17 @@ if System.get_env("PHX_SERVER") do
   config :paradox_tg_bots, ParadoxTgBotsWeb.Endpoint, server: true
 end
 
+webhook_secret =
+  System.get_env("TG_WEBHOOK_SECRET") ||
+    raise """
+    environment variable TG_WEBHOOK_SECRET is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+config :paradox_tg_bots, :config,
+  webhook_secret: webhook_secret,
+  tg_token: System.get_env("TG_TOKEN")
+
 if config_env() == :prod do
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

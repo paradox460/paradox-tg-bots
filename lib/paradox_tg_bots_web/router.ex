@@ -3,9 +3,12 @@ defmodule ParadoxTgBotsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug ParadoxTgBotsWeb.Plugs.Auth
   end
 
-  scope "/api", ParadoxTgBotsWeb do
+  scope "/", ParadoxTgBotsWeb do
     pipe_through :api
+
+    post "/spurdify", SpurdifyController, :create
   end
 end
