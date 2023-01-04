@@ -61,7 +61,8 @@ defmodule ParadoxTgBots.Spurdify do
               {"alk", "olk"},
               {"ing", "ign"},
               {"ic", "ig"},
-              {"ng", "nk"}
+              {"ng", "nk"},
+              {"gg", "gb"}
             ]
             |> Enum.map(fn {src, dest} -> {Regex.compile!(src, "i"), dest} end)
 
